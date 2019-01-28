@@ -1,0 +1,23 @@
+<mat-toolbar class="home-nav">
+  <div class="home-nav-title">
+    <h4 class="nav-title">Big Laundry</h4>
+  </div>
+  <div class="home-nav-buttons">
+    <a routerLink="/search" style="float: right;">
+      <mat-icon>search</mat-icon>
+    </a>
+  </div>
+  <div class="clearfix"></div>
+</mat-toolbar>
+<mat-tab-group class="home-tabs">
+  <mat-tab *ngFor="let menuItem of menu" label="{{ menuItem.label }}">
+    <!--<div *ngFor="let subcategory of this.subcategories">-->
+    <!--<mat-card>{{ subcategory.name }} </mat-card>-->
+    <!--</div>-->
+    <div class="large-space"></div>
+    <div class="large-space"></div>
+    <app-subcategories [parentId]="menuItem.woocommerceId"></app-subcategories>
+  </mat-tab>
+</mat-tab-group>
+
+<app-cart></app-cart>

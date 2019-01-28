@@ -1,0 +1,29 @@
+.uploaded-image {
+  width: 100%;
+  padding-top: 100%;
+  background: lightblue;
+  background-size: cover;
+  display: inline-block;
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+.image-uploaded-wrapper {
+  width: 150px;
+  display: inline-block !important;
+  position: relative;
+
+
+  progress {
+    position: absolute;
+    width: 80%;
+    bottom: 18px;
+    margin-left: 10%;
+    margin-right: 10%;
+  }
+}
+
+.file-to-upload-file {
+  display: none;
+}

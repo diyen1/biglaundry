@@ -1,0 +1,10 @@
+<div class="large-space"></div>
+<div class="cart-wrapper" (click)="router.navigate(['checkout'])">
+    <div class="cart-text align-with-icon">Your basket</div>
+  <div class="cart-amount">
+    <div  class="cart-amount-icon"><mat-icon>keyboard_arrow_right</mat-icon></div>
+    <div class="cart-amount-price">
+      <span class="align-with-icon">{{ woocommerceCartService.totalPrice | currency:'XAF':'':'1.0-0'  }} frs</span>
+    </div>
+  </div>
+</div>

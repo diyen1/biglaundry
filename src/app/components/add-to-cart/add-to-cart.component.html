@@ -1,0 +1,17 @@
+<div class="add-to-cart-wrapper">
+  <div class="add-to-cart-actions">
+
+    <mat-icon (click)="woocommerceCartService.addToCart(cartItem)">keyboard_arrow_up</mat-icon>
+
+    <div>
+      {{ quantity }}
+    </div>
+
+    <mat-icon (click)="woocommerceCartService.removeFromCart(cartItem)">keyboard_arrow_down</mat-icon>
+  </div>
+  <div class="add-to-cart-item-count">
+
+  </div>
+  <div class="clearfix"></div>
+</div>
+<div class="clearfix"></div>

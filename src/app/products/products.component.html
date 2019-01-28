@@ -1,0 +1,31 @@
+<!--<mat-toolbar color="primary">-->
+<!--<mat-icon>arrow_back</mat-icon> <span *ngIf="subcategory && subcategory != null">{{ subcategory.name }}</span>-->
+<!--</mat-toolbar>-->
+
+<util-nav
+  *ngIf="subcategory && subcategory != null"
+  [title]="subcategory.name"
+  [back]="'home'"></util-nav>
+
+<util-nav
+  *ngIf="!(subcategory && subcategory != null)"
+  [title]="''"
+  [back]="'home'"></util-nav>
+
+<div *ngIf="loading" class="loading-wrapper page-section-wrapper">
+  <mat-progress-bar color="primary" mode="indeterminate"></mat-progress-bar>
+</div>
+
+<div *ngIf="!loading">
+  <div *ngIf="products && products.length > 0">
+    <div class="product-items-list">
+      <app-product [product]="product" *ngFor="let product of products">
+      </app-product>
+    </div>
+  </div>
+  <div *ngIf="!(products && products.length > 0)" class="page-section-wrapper">
+    There are no items found for this category
+  </div>
+</div>
+
+<app-cart></app-cart>

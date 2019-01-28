@@ -1,0 +1,28 @@
+.dm-form-step {
+  display: none;
+
+  &.active {
+    display: block;
+  }
+}
+
+.crud-multistep-tabs {
+  display: inline-block;
+  float: left;
+
+  > div {
+    background: #999;
+    color: #fff;
+    width: 30px;
+    margin: auto;
+    text-align: center;
+    padding: 6px 0;
+    border-radius: 50%;
+  }
+
+  &.active {
+    > div {
+      background: #333;
+    }
+  }
+}

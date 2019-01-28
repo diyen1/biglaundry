@@ -1,0 +1,12 @@
+<mat-toolbar color="primary" class="navbar">
+  <button *ngIf="back && back != null" class="nav-back" (click)="goBack()">
+    <mat-icon>arrow_backward</mat-icon>
+  </button>
+
+  <h4 *ngIf="title && title != null" class="nav-title">{{ title }}</h4>
+</mat-toolbar>
+
+<mat-toolbar class="placeholder-toolbar" color="primary">
+  <h4 class="nav-title">title</h4>
+</mat-toolbar>
+

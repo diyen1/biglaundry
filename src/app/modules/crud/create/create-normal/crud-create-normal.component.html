@@ -1,0 +1,76 @@
+<form novalidate [formGroup]="form" (submit)="onSubmit(form.value)">
+  <!--<p>
+    <i class="material-icons" role="presentation">account_circle</i>
+    &lt;!&ndash;<mdl-textfield label="Full Names" name="fullNames" type="text" formControlName="fullNames" floating-label></mdl-textfield>&ndash;&gt;
+  </p>-->
+  <p *ngFor="let field of fields">
+  <span [ngSwitch]="field.type">
+
+     <mat-form-field
+       *ngSwitchCase="'text_area'"
+       style="width: 100%;">
+      <mat-label>{{ field.name }}</mat-label>
+      <textarea
+        matInput
+        name="{{ field.key }}"
+        placeholder="{{ field.name }}"
+        formControlName="{{ field.key }}"></textarea>
+    </mat-form-field>
+
+    <input
+      *ngSwitchCase="'hidden'"
+      name="{{ field.key }}"
+      type="hidden"
+      formControlName="{{ field.key }}"
+      floating-label/>
+
+    <!--<dmfb-file-upload
+      *ngSwitchCase="'image'"
+      (change)="fileAddedCallback()"
+      formControlName="{{ field.key }}"></dmfb-file-upload>-->
+
+
+    <span *ngSwitchCase="'image'" class="dmfb-crud-image">
+      <label class="dmfb-crud-image-label">{{ field.name }}</label>
+      <div class="small-space"></div>
+      <dmfb-file-upload
+        (change)="fileAddedCallback()"
+        formControlName="{{ field.key }}"></dmfb-file-upload>
+    </span>
+
+    <span *ngSwitchCase="'image_array'">
+      <label>{{ field.name }}</label>
+      <div class="small-space"></div>
+      <span *ngFor="let imageField of [].constructor(field.image_count); let i = index">
+        <dmfb-file-upload
+          (change)="fileAddedCallback()"
+          formControlName="{{ field.key + '_' + i }}"></dmfb-file-upload>
+        <span *ngIf="i !== field.image_count -1" class="x-small-space horizontal"></span>
+      </span>
+    </span>
+
+     <mat-form-field
+       *ngSwitchDefault
+       style="width: 100%;">
+      <mat-label>{{ field.name }}</mat-label>
+      <input matInput
+             type="{{ field.type }}"
+             name="{{ field.key }}"
+             placeholder="{{ field.name }}"
+             formControlName="{{ field.key }}">
+    </mat-form-field>
+  </span>
+  </p>
+  <p></p>
+  <div>
+    <button [disabled]="!form.valid || loading" mat-button mat-raised-button color="primary" style="width: 100%;">
+      {{ submitButtonText }}
+    </button>
+
+    <span class="small-space"></span>
+
+    <div *ngIf="loading" class="loading-wrapper page-section-wrapper">
+      <mat-progress-spinner color="primary" mode="indeterminate"></mat-progress-spinner>
+    </div>
+  </div>
+</form>

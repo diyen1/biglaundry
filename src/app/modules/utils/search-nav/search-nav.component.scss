@@ -1,0 +1,48 @@
+.navbar {
+  position: fixed;
+  width: 100%;
+  top: 0;
+  left: 0;
+  z-index: 100;
+}
+
+.nav-back {
+  background: rgba(0,0,0,0);
+  border: none;
+  color: #fff;
+  padding-left: 0;
+}
+
+.nav-search-field {
+  width: 100%;
+  background: rgba(0, 0, 0, 0);
+  padding: 5px 10px;
+  z-index: 10;
+  border: none;
+  color: #fff;
+  text-decoration: underline;
+  font-size: 16px;
+
+  &:focus {
+    outline: none;
+  }
+}
+
+.placeholder-toolbar {
+  visibility: hidden;
+}
+
+$placehoder-color: #fff;
+
+::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+  color: $placehoder-color;
+}
+::-moz-placeholder { /* Firefox 19+ */
+  color: $placehoder-color;
+}
+:-ms-input-placeholder { /* IE 10+ */
+  color: $placehoder-color;
+}
+:-moz-placeholder { /* Firefox 18- */
+  color: $placehoder-color;
+}

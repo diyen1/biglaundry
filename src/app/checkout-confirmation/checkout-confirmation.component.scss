@@ -1,0 +1,29 @@
+.cart-item {
+  padding: 15px 0;
+  border-bottom: #ccc dotted 1px;
+}
+
+.cart-item-details,
+.cart-item-price,
+.cart-add-to-cart {
+  display: inline-block;
+  float: left;
+}
+
+.cart-add-to-cart {
+  width: 40px;
+}
+
+.cart-item-details {
+  width: calc(100% - 160px);
+
+  img {
+    width: 51px;
+    height: auto;
+  }
+}
+
+.cart-item-price {
+  width: 120px;
+  text-align: right;
+}

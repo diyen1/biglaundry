@@ -1,0 +1,7 @@
+<form [formGroup]="form" class="image-uploaded-wrapper">
+  <progress *ngIf="loading" value="{{ percentage }}" max="100" id="uploader">{{ percentage }}%</progress>
+  <input type="file" value="" class="file-to-upload-file"
+    id="{{ fileToUploadId }}" (change)="uploadFile(file)" #file>
+  <input formControlName="fileField" type="hidden" />
+  <label for="{{ fileToUploadId }}" class="uploaded-image" [style.backgroundImage]="'url(' + downloadURL + ')'" ></label>
+</form>

@@ -1,0 +1,48 @@
+.navbar {
+  position: fixed;
+  width: 100%;
+  top: 0;
+  left: 0;
+  z-index: 100;
+}
+
+.nav-wrapper {
+  position: fixed;
+  width: 100%;
+  z-index: 1000;
+}
+
+.nav-back {
+  background: rgba(0,0,0,0);
+  border: none;
+  color: #fff;
+  padding-left: 0;
+}
+
+.nav-back, .nav-title {
+  float: left;
+}
+
+.nav-title {
+  font-size: 20px;
+  display: inline-block;
+  float: left;
+  margin: 0;
+}
+
+.nav-menu {
+  float: right;
+}
+
+.bar {
+
+
+}
+
+.bar-space {
+  height: 60px;
+}
+
+.placeholder-toolbar {
+  visibility: hidden;
+}

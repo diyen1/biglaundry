@@ -1,0 +1,30 @@
+<div *ngIf="product && product != null" class="product-item">
+  <div class="add-item">
+    <div class="cart-add-to-cart">
+      <app-add-to-cart
+        [quantity]="woocommerceCartService.getItemCount(product.id)"
+        [cartItem]="product"></app-add-to-cart>
+    </div>
+
+
+    <!--<a>-->
+    <!--<div><a class="text-icon">+</a></div>-->
+    <!--<div>{{ woocommerceCartService.getItemCountText(product.id) }}</div>-->
+    <!--</a>-->
+  </div>
+  <div class="item-details">
+    <div>
+      <div class="product-item-heading">{{ product.name }}</div>
+      <small [innerHtml]="product.description"></small>
+    </div>
+  </div>
+  <div class="item-price">
+    <div>
+      <div>{{ product.price | currency:'XAF':'':'1.0-0' }} frs</div>
+    </div>
+  </div>
+
+  <div style="clear: both;"></div>
+</div>
+
+<!--  (click)="woocommerceCartService.addToCart(product)"   -->

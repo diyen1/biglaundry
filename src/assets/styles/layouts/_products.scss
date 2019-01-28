@@ -1,0 +1,39 @@
+.product-items-list {
+  padding: 15px 0;
+  color: #555;
+}
+
+.product-item {
+  padding: 7px 16px;
+
+  .product-item-heading {
+    color: #000;
+  }
+
+  .add-item, .item-details, .item-price {
+    display: inline-block;
+    float: left;
+  }
+  .add-item {
+    width: 30px;
+  }
+  .item-details {
+    width: calc(100% - 100px);
+    > div {
+      padding: 10px 5px;
+    }
+  }
+
+  .item-price {
+    width: 70px;
+    > div {
+      padding: 10px 5px;
+      padding-right: 0;
+    }
+  }
+
+  &:after {
+    content: " ";
+    clear: both;
+  }
+}

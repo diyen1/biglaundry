@@ -1,0 +1,16 @@
+/* You can add global styles to this file, and also import other style files */
+
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+
+$color-primary: "33,150,243";
+$color-primary-dark: "25,118,210";
+$color-accent: "255,215,64";
+$color-primary-contrast: "255,255,255";
+$color-accent-contrast: "0,0,0";
+
+@import "assets/styles/components/elements";
+@import "assets/styles/components/spaces";
+@import "assets/styles/layouts/header";
+@import "assets/styles/layouts/pages";
+
+@import "assets/styles/layouts/products";

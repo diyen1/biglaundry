@@ -1,0 +1,121 @@
+.gradient-bg {
+  background: #fff; /* For browsers that do not support gradients */
+  background: -webkit-linear-gradient(bottom right, #fff, #e6edef); /* For Safari 5.1 to 6.0 */
+  background: -o-linear-gradient(bottom right, #fff, #e6edef); /* For Opera 11.1 to 12.0 */
+  background: -moz-linear-gradient(bottom right, #fff, #e6edef); /* For Firefox 3.6 to 15 */
+  background: linear-gradient(to bottom right, #fff, #e6edef); /* Standard syntax */
+}
+
+.full-width {
+  width: 100%;
+  height: auto;
+}
+
+.full-height {
+  height: 100vh;
+}
+
+.page-section-wrapper {
+  padding: 15px 40px;
+}
+
+.avatar {
+  i {
+    font-size: 10em;
+  }
+}
+
+.profile-action {
+  text-align: center;
+
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+.mdlc-row {
+  margin-left: -15px;
+  margin-right: -15px;
+}
+
+.service-image {
+  width: 100%;
+  padding-top: 100%;
+  background-size: cover;
+}
+
+
+.profile-wrapper {
+  .uploaded-image {
+    border-radius: 50%;
+  }
+
+  .dmfb-crud-image-label {
+    display: none;
+  }
+}
+
+.mdl-navigation__link.is-active {
+  background: unquote("rgb(#{$color-primary})");
+  color: #fff;
+}
+
+.mdl-navigation__link.is-active {
+  color: #fff !important;
+}
+
+.dm-hover {
+  cursor: pointer;
+}
+
+.clearfix {
+  clear: both;
+}
+
+.text-icon {
+  display: inline-block;
+  background: #555;
+  color: #fff;
+  border-radius: 50%;
+  width: 22px;
+  height: 22px;
+  text-align: center;
+  font-weight: bold;
+  line-height: 23px;
+  margin-top: -3px;
+}
+
+
+//////////////////////
+
+.home-tabs .mat-tab-header,
+.home-nav {
+  position: fixed !important;
+  width: 100%;
+  left: 0;
+  z-index: 10;
+}
+
+.home-tabs {
+  .mat-tab-body-content {
+    //padding-top: 120px;
+  }
+}
+
+.home-tabs .mat-tab-header {
+  background: #fff;
+  top: 55px;
+}
+
+.home-nav {
+  top: 0;
+}
+
+.loading-wrapper {
+  //width: 50px;
+  //margin: auto;
+  //> * {
+  //  //margin: auto;
+  //  width: 100%;
+  //}
+}

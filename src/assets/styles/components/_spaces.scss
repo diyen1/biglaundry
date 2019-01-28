@@ -1,0 +1,90 @@
+/** Vertical spaces **/
+
+.xx-small-space {
+  height: 7px;
+  display: block;
+}
+
+.x-small-space {
+  height: 15px;
+  display: block;
+}
+
+.small-space {
+  height: 25px;
+  display: block;
+}
+
+.medium-space {
+  height: 40px;
+  display: block;
+}
+
+.large-space {
+  height: 60px;
+  display: block;
+}
+
+.x-large-space {
+  height: 100px;
+  display: block;
+}
+
+
+/** Horizontal spaces **/
+
+.horizontal {
+  &.xx-small-space {
+    display: inline-block;
+    height: auto;
+    width: 7px;
+  }
+
+  &.x-small-space {
+    display: inline-block;
+    height: auto;
+    width: 15px;
+  }
+
+  &.small-space {
+    display: inline-block;
+    height: auto;
+    width: 25px;
+  }
+
+  &.medium-space {
+    display: inline-block;
+    height: auto;
+    width: 40px;
+  }
+}
+
+/** Padding **/
+
+.padding {
+  &.xx-small-space {
+    height: auto;
+    padding: 7px;
+  }
+
+  &.x-small-space {
+    height: auto;
+    padding: 15px;
+  }
+
+  &.small-space {
+    height: auto;
+    padding: 25px;
+  }
+
+  &.medium-space {
+    height: auto;
+    padding: 40px;
+  }
+  &.sides {
+    padding-top: 0;
+    padding-bottom: 0;
+  }
+}
+
+

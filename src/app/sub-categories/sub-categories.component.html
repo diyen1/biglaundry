@@ -1,0 +1,21 @@
+<div *ngIf="loading" class="loading-wrapper page-section-wrapper">
+  <mat-progress-bar color="primary" mode="indeterminate"></mat-progress-bar>
+</div>
+
+<div *ngIf="!loading">
+  <div *ngIf="subcategories && subcategories.length > 0">
+    <div *ngFor="let subcategory of subcategories" class="xx-small-space padding">
+      <mat-card routerLink="{{ '/products/' + subcategory.id }}"
+                class="category-item"
+                [style.border-radius]="0"
+                [style.background-image]="'url(' + getBackgroundImage(subcategory.image) + ')'"
+                [style.background-color]="(getBackgroundImage(subcategory.image) === './assets/img/default-category-image.jpg') ? '#E8E8E8': ''"
+                [style.height]="'200px'">
+        <mat-card-title class="category-item-title">{{ subcategory.name }}</mat-card-title>
+      </mat-card>
+    </div>
+  </div>
+  <div *ngIf="!(subcategories && subcategories.length > 0)" class="page-section-wrapper">
+    There are no items found for this category
+  </div>
+</div>

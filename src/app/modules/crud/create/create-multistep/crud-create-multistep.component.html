@@ -1,0 +1,120 @@
+<form *ngIf="fieldsLoaded" novalidate [formGroup]="form" (submit)="onSubmit(form.value)">
+  <!--<p>
+    <i class="material-icons" role="presentation">account_circle</i>
+    &lt;!&ndash;<mdl-textfield label="Full Names" name="fullNames" type="text" formControlName="fullNames" floating-label></mdl-textfield>&ndash;&gt;
+  </p>-->
+
+  <div>
+    <div *ngFor="let tab of fields.tabs; let i=index"
+         class="crud-multistep-tabs {{ getActiveClass(i) }}"
+         (click)="jumpTo(i)"
+         [style.width]=" 100 / fields.tabs.length + '%'">
+      <div>
+        {{ i + 1 }}
+      </div>
+    </div>
+    <div style="clear: both"></div>
+    <div style="border-top: red solid 1px; height: 1px; margin-top: -15px; padding-bottom: 15px;"></div>
+  </div>
+
+
+  <div>
+    <div *ngFor="let tab of fields.tabs; let i=index">
+      <div class="dm-form-step {{ getActiveClass(i) }}">
+        <p *ngFor="let field of tab.fields">
+  <span [ngSwitch]="field.type">
+
+     <mat-form-field
+       *ngSwitchCase="'text_area'"
+       style="width: 100%;">
+      <mat-label>{{ field.name }}</mat-label>
+      <textarea
+        matInput
+        name="{{ field.key }}"
+        placeholder="{{ field.name }}"
+        formControlName="{{ field.key }}"></textarea>
+    </mat-form-field>
+
+    <input
+      *ngSwitchCase="'hidden'"
+      name="{{ field.key }}"
+      type="hidden"
+      formControlName="{{ field.key }}"
+      floating-label/>
+
+    <!--<dmfb-file-upload
+      *ngSwitchCase="'image'"
+      (change)="fileAddedCallback()"
+      formControlName="{{ field.key }}"></dmfb-file-upload>-->
+
+
+    <span *ngSwitchCase="'image'" class="dmfb-crud-image">
+      <label class="dmfb-crud-image-label">{{ field.name }}</label>
+      <div class="small-space"></div>
+      <dmfb-file-upload
+        (change)="fileAddedCallback()"
+        formControlName="{{ field.key }}"></dmfb-file-upload>
+    </span>
+
+    <span *ngSwitchCase="'image_array'">
+      <label>{{ field.name }}</label>
+      <div class="small-space"></div>
+      <span *ngFor="let imageField of [].constructor(field.image_count); let i = index">
+        <dmfb-file-upload
+          (change)="fileAddedCallback()"
+          formControlName="{{ field.key + '_' + i }}"></dmfb-file-upload>
+        <span *ngIf="i !== field.image_count -1" class="x-small-space horizontal"></span>
+      </span>
+    </span>
+
+    <span *ngSwitchCase="'component'">
+      <ng-template #dynamicComponent></ng-template>
+    </span>
+
+     <mat-form-field
+       *ngSwitchDefault
+       style="width: 100%;">
+      <mat-label>{{ field.name }}</mat-label>
+      <input matInput
+             type="{{ field.type }}"
+             name="{{ field.key }}"
+             placeholder="{{ field.name }}"
+             formControlName="{{ field.key }}">
+    </mat-form-field>
+  </span>
+        </p>
+        <p></p>
+      </div>
+    </div>
+
+
+    <div>
+      <button
+        *ngIf="displayPrev()" (click)="prev()"
+        mat-button mat-raised-button color="primary" style="width: 100%;">
+        Previous
+      </button>
+
+      <span class="small-space"></span>
+
+      <button
+        *ngIf="displayNext()" (click)="next()"
+        mat-button mat-raised-button color="primary" style="width: 100%;">
+        Next
+      </button>
+    </div>
+
+    <div *ngIf="displaySubmit()">
+      <button [disabled]="!form.valid || loading" mat-button mat-raised-button color="primary" style="width: 100%;">
+        {{ submitButtonText }}
+      </button>
+
+      <span class="small-space"></span>
+
+      <div *ngIf="loading" class="loading-wrapper page-section-wrapper">
+        <mat-progress-spinner color="primary" mode="indeterminate"></mat-progress-spinner>
+      </div>
+    </div>
+
+  </div>
+</form>

@@ -1,0 +1,25 @@
+mat-toolbar {
+  position: fixed;
+  width: 100%;
+  top: 0;
+  left: 0;
+}
+
+.home-nav {
+  display: block;
+  padding-top: 10px;
+  padding-bottom: 10px;
+
+  .home-nav-title, .home-nav-buttons {
+    display: inline-block;
+    float: left;
+  }
+
+  .home-nav-title {
+    width: 50%;
+  }
+
+  .home-nav-buttons {
+    width: 50%;
+  }
+}

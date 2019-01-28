@@ -1,0 +1,39 @@
+<!--<util-nav-search></util-nav-search>-->
+
+<mat-toolbar color="primary" class="navbar">
+  <button class="nav-back" (click)="router.navigate(['home'])">
+    <mat-icon>arrow_backward</mat-icon>
+  </button>
+
+  <!--<mat-form-field class="full-width">-->
+  <!--<input matInput type="text" placeholder="Search"> &lt;!&ndash; formControlName="search" &ndash;&gt;-->
+  <!--</mat-form-field>-->
+
+  <input #searchKeyInput
+         (keypress)="changedSearchKey($event, searchKeyInput.value)"
+         class="nav-search-field" type="text" placeholder="Search">
+
+  <mat-icon (click)="searchKeyInput.value = ''">close</mat-icon>
+  <mat-icon (click)="search(searchKeyInput.value)">search</mat-icon>
+</mat-toolbar>
+
+
+<mat-toolbar class="placeholder-toolbar" color="primary">
+  <h4 class="nav-title">title</h4>
+</mat-toolbar>
+
+
+<!-- End Util nav search -->
+<div *ngIf="!loading">
+  <div *ngIf="products && products.length > 0">
+    <div class="product-items-list">
+      <app-product [product]="product" *ngFor="let product of products">
+      </app-product>
+    </div>
+  </div>
+  <div *ngIf="!(products && products.length > 0)" class="page-section-wrapper">
+    There are no items found for this category
+  </div>
+</div>
+
+<app-cart></app-cart>

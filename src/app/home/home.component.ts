@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {HttpClient} from '@angular/common/http';
 import {DmWoocommerceProductsService} from '../modules/woocomerce/services/dm-woocommerce-products.service';
-import {environment} from '../../environments/environment';
 import {AppService} from '../app.service';
 
 @Component({
@@ -17,7 +15,7 @@ export class HomeComponent implements OnInit {
 
   constructor(
     private woocommerceProductsService: DmWoocommerceProductsService,
-    private appService: AppService,
+    public appService: AppService,
   ) {
     // if (environment.production) {
     //   this.menu = [
@@ -88,6 +86,11 @@ export class HomeComponent implements OnInit {
     //   this.subcategories = subcategories;
     // });
     // environment.wcOrigin + '/products/categories?parent=16'
+  }
+
+  selectedTabChangeCallback(event) {
+    console.log('event', event.index);
+    this.appService.currentCategoryIndex = event.index;
   }
 
 }

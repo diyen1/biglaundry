@@ -1,5 +1,5 @@
 <mat-toolbar color="primary" class="navbar">
-  <button *ngIf="back && back != null" class="nav-back" (click)="goBack()">
+  <button *ngIf="displayBack" class="nav-back" (click)="goBack()">
     <mat-icon>arrow_backward</mat-icon>
   </button>
 

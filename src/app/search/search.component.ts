@@ -60,6 +60,10 @@ export class SearchComponent implements OnInit {
       this.loading = false;
     });
   }
+
+  goBack() {
+    window.history.back();
+  }
 }
 
 

@@ -7,6 +7,8 @@ import {environment} from '../environments/environment';
 })
 export class AppService {
 
+  currentCategoryIndex = 0;
+
   constructor(private http: HttpClient) { }
 
   getSiteCategories() {

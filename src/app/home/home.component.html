@@ -9,7 +9,11 @@
   </div>
   <div class="clearfix"></div>
 </mat-toolbar>
-<mat-tab-group class="home-tabs">
+<mat-tab-group
+  *ngIf="menu && menu.length > 0"
+  [selectedIndex]="appService.currentCategoryIndex"
+  (selectedTabChange)="selectedTabChangeCallback($event)"
+  class="home-tabs">
   <mat-tab *ngFor="let menuItem of menu" label="{{ menuItem.label }}">
     <!--<div *ngFor="let subcategory of this.subcategories">-->
     <!--<mat-card>{{ subcategory.name }} </mat-card>-->

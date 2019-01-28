@@ -33,14 +33,22 @@ export class CheckoutComponent implements OnInit {
             type: 'text',
           },
           {
-            key: 'addressLine1',
-            name: 'Address Line 1',
-            type: 'text',
+            key: 'addressLine2',
+            name: 'Town / City',
+            type: 'select',
+            values: [
+              {'label': 'Buea', 'value': 'buea'},
+            ]
           },
           {
-            key: 'addressLine2',
-            name: 'Address Line 2',
-            type: 'text',
+            key: 'addressLine1',
+            name: 'Quarter / Locality',
+            type: 'select',
+            values: [
+              {'label': 'Tarred Malingo', 'value': 'tarred-malingo'},
+              {'label': 'Untarred Malingo', 'value': 'untarred-malingo'},
+              {'label': 'Check Point', 'value': 'checkpoint'},
+            ]
           },
         ]
       },

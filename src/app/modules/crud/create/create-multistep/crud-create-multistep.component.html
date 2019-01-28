@@ -21,34 +21,47 @@
   <div>
     <div *ngFor="let tab of fields.tabs; let i=index">
       <div class="dm-form-step {{ getActiveClass(i) }}">
-        <p *ngFor="let field of tab.fields">
-  <span [ngSwitch]="field.type">
+        <div *ngFor="let field of tab.fields">
+          <div [ngSwitch]="field.type">
+            <div style="height: 7px"></div>
 
-     <mat-form-field
-       *ngSwitchCase="'text_area'"
-       style="width: 100%;">
-      <mat-label>{{ field.name }}</mat-label>
-      <textarea
-        matInput
-        name="{{ field.key }}"
-        placeholder="{{ field.name }}"
-        formControlName="{{ field.key }}"></textarea>
-    </mat-form-field>
+            <mat-form-field
+              *ngSwitchCase="'text_area'"
+              style="width: 100%;">
+              <mat-label>{{ field.name }}</mat-label>
+              <textarea
+                matInput
+                name="{{ field.key }}"
+                placeholder="{{ field.name }}"
+                formControlName="{{ field.key }}"></textarea>
+            </mat-form-field>
 
-    <input
-      *ngSwitchCase="'hidden'"
-      name="{{ field.key }}"
-      type="hidden"
-      formControlName="{{ field.key }}"
-      floating-label/>
+            <div *ngSwitchCase="'select'">
+              <div>{{ field.name }}</div>
+              <mat-form-field style="width: 100%">
+                <select
+                  name="{{ field.key }}"
+                  formControlName="{{ field.key }}"
+                  matNativeControl required>
+                  <option *ngFor="let option of field.values" value="{{ option.value }}">{{ option.label }}</option>
+                </select>
+              </mat-form-field>
+            </div>
 
-    <!--<dmfb-file-upload
-      *ngSwitchCase="'image'"
-      (change)="fileAddedCallback()"
-      formControlName="{{ field.key }}"></dmfb-file-upload>-->
+            <input
+              *ngSwitchCase="'hidden'"
+              name="{{ field.key }}"
+              type="hidden"
+              formControlName="{{ field.key }}"
+              floating-label/>
+
+            <!--<dmfb-file-upload
+              *ngSwitchCase="'image'"
+              (change)="fileAddedCallback()"
+              formControlName="{{ field.key }}"></dmfb-file-upload>-->
 
 
-    <span *ngSwitchCase="'image'" class="dmfb-crud-image">
+            <span *ngSwitchCase="'image'" class="dmfb-crud-image">
       <label class="dmfb-crud-image-label">{{ field.name }}</label>
       <div class="small-space"></div>
       <dmfb-file-upload
@@ -56,7 +69,7 @@
         formControlName="{{ field.key }}"></dmfb-file-upload>
     </span>
 
-    <span *ngSwitchCase="'image_array'">
+            <span *ngSwitchCase="'image_array'">
       <label>{{ field.name }}</label>
       <div class="small-space"></div>
       <span *ngFor="let imageField of [].constructor(field.image_count); let i = index">
@@ -67,22 +80,24 @@
       </span>
     </span>
 
-    <span *ngSwitchCase="'component'">
-      <ng-template #dynamicComponent></ng-template>
-    </span>
+            <div *ngSwitchCase="'component'">
+              <ng-template #dynamicComponent></ng-template>
+            </div>
 
-     <mat-form-field
-       *ngSwitchDefault
-       style="width: 100%;">
-      <mat-label>{{ field.name }}</mat-label>
-      <input matInput
-             type="{{ field.type }}"
-             name="{{ field.key }}"
-             placeholder="{{ field.name }}"
-             formControlName="{{ field.key }}">
-    </mat-form-field>
-  </span>
-        </p>
+            <mat-form-field
+              *ngSwitchDefault
+              style="width: 100%;">
+              <mat-label>{{ field.name }}</mat-label>
+              <input matInput
+                     type="{{ field.type }}"
+                     name="{{ field.key }}"
+                     placeholder="{{ field.name }}"
+                     formControlName="{{ field.key }}">
+            </mat-form-field>
+            <div style="height: 7px"></div>
+          </div>
+
+        </div>
         <p></p>
       </div>
     </div>

@@ -13,11 +13,11 @@ export class CheckoutComponent implements OnInit {
 
   form: FormGroup;
 
-  cart = [
-    {product_id: 12, quantity: 1, price: "4000"},
-    {product_id: 11, quantity: 2, price: "5000"},
-    {product_id: 10, quantity: 2, price: "3000"},
-  ];
+  // cart = [
+  //   {product_id: 12, quantity: 1, price: "4000"},
+  //   {product_id: 11, quantity: 2, price: "5000"},
+  //   {product_id: 10, quantity: 2, price: "3000"},
+  // ];
 
   loading = false;
 
@@ -40,11 +40,6 @@ export class CheckoutComponent implements OnInit {
           {
             key: 'addressLine2',
             name: 'Address Line 2',
-            type: 'text',
-          },
-          {
-            key: 'postCode',
-            name: 'Post Code',
             type: 'text',
           },
         ]

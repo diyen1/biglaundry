@@ -4,7 +4,7 @@ import {CrudCreateComponent} from './create/crud-create.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 // import {InfiniteScrollModule} from 'ngx-infinite-scroll';
 import {RouterModule} from '@angular/router';
-import {MatButtonModule, MatFormFieldModule, MatInputModule, MatProgressSpinnerModule} from '@angular/material';
+import {MatButtonModule, MatFormFieldModule, MatGridListModule, MatInputModule, MatProgressSpinnerModule} from '@angular/material';
 import {DmfbFileUploadModule} from '../file-upload/dmfb-file-upload.module';
 import {CrudCreateNormalComponent} from './create/create-normal/crud-create-normal.component';
 import {CrudCreateMultistepComponent} from './create/create-multistep/crud-create-multistep.component';
@@ -31,6 +31,7 @@ const components = [
     MatInputModule,
     MatButtonModule,
     MatProgressSpinnerModule,
+    MatGridListModule
   ],
   exports: [
     ... components,

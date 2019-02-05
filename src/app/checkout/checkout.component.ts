@@ -54,6 +54,7 @@ export class CheckoutComponent implements OnInit {
       },
       {
         tabName: 'Delivery',
+        col: 1,
         fields: [
           {
             key: 'collectionDate',

@@ -1,12 +1,7 @@
 <util-nav [title]="'Your Basket'"></util-nav>
 
 <div class="page-section-wrapper">
-  <dm-crud-create-multistep
-    [submitButtonText]="'Order'"
-    [fields]="fields"
-    [loading]="loading"
-    (outputData)="order($event)"
-  ></dm-crud-create-multistep>
+  <router-outlet></router-outlet>
 </div>
 
 <!--<form [formGroup]="form" (submit)="order(form.value)">-->

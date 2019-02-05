@@ -20,8 +20,8 @@
 
   <div>
     <div *ngFor="let tab of fields.tabs; let i=index">
-      <div class="dm-form-step {{ getActiveClass(i) }}">
-        <div *ngFor="let field of tab.fields">
+      <div class="crud-row dm-form-step {{ getActiveClass(i) }}">
+        <div class="crud-col" [style.width]="'50%'" *ngFor="let field of tab.fields">
           <div [ngSwitch]="field.type">
             <div style="height: 7px"></div>
 
@@ -42,6 +42,7 @@
                 <select
                   name="{{ field.key }}"
                   formControlName="{{ field.key }}"
+                  title="{{ field.key }}"
                   matNativeControl required>
                   <option *ngFor="let option of field.values" value="{{ option.value }}">{{ option.label }}</option>
                 </select>
@@ -61,24 +62,24 @@
               formControlName="{{ field.key }}"></dmfb-file-upload>-->
 
 
-            <span *ngSwitchCase="'image'" class="dmfb-crud-image">
-      <label class="dmfb-crud-image-label">{{ field.name }}</label>
-      <div class="small-space"></div>
-      <dmfb-file-upload
-        (change)="fileAddedCallback()"
-        formControlName="{{ field.key }}"></dmfb-file-upload>
-    </span>
+            <div *ngSwitchCase="'image'" class="dmfb-crud-image">
+              <label class="dmfb-crud-image-label">{{ field.name }}</label>
+              <div class="small-space"></div>
+              <dmfb-file-upload
+                (change)="fileAddedCallback()"
+                formControlName="{{ field.key }}"></dmfb-file-upload>
+            </div>
 
-            <span *ngSwitchCase="'image_array'">
-      <label>{{ field.name }}</label>
-      <div class="small-space"></div>
-      <span *ngFor="let imageField of [].constructor(field.image_count); let i = index">
-        <dmfb-file-upload
-          (change)="fileAddedCallback()"
-          formControlName="{{ field.key + '_' + i }}"></dmfb-file-upload>
-        <span *ngIf="i !== field.image_count -1" class="x-small-space horizontal"></span>
-      </span>
-    </span>
+            <div *ngSwitchCase="'image_array'">
+              <label>{{ field.name }}</label>
+              <div class="small-space"></div>
+              <div *ngFor="let imageField of [].constructor(field.image_count); let i = index">
+                <dmfb-file-upload
+                  (change)="fileAddedCallback()"
+                  formControlName="{{ field.key + '_' + i }}"></dmfb-file-upload>
+                <span *ngIf="i !== field.image_count -1" class="x-small-space horizontal"></span>
+              </div>
+            </div>
 
             <div *ngSwitchCase="'component'">
               <ng-template #dynamicComponent></ng-template>
@@ -96,40 +97,41 @@
             </mat-form-field>
             <div style="height: 7px"></div>
           </div>
-
         </div>
         <p></p>
       </div>
     </div>
-
-
-    <div>
-      <button
-        *ngIf="displayPrev()" (click)="prev()"
-        mat-button mat-raised-button color="primary" style="width: 100%;">
-        Previous
-      </button>
-
-      <span class="small-space"></span>
-
-      <button
-        *ngIf="displayNext()" (click)="next()"
-        mat-button mat-raised-button color="primary" style="width: 100%;">
-        Next
-      </button>
-    </div>
-
-    <div *ngIf="displaySubmit()">
-      <button [disabled]="!form.valid || loading" mat-button mat-raised-button color="primary" style="width: 100%;">
-        {{ submitButtonText }}
-      </button>
-
-      <span class="small-space"></span>
-
-      <div *ngIf="loading" class="loading-wrapper page-section-wrapper">
-        <mat-progress-spinner color="primary" mode="indeterminate"></mat-progress-spinner>
-      </div>
-    </div>
-
+    <div style="clear: both;"></div>
   </div>
+
+
+  <div>
+    <button
+      *ngIf="displayPrev()" (click)="prev()"
+      mat-button mat-raised-button color="primary" style="width: 100%;">
+      Previous
+    </button>
+
+    <span class="small-space"></span>
+
+    <button
+      *ngIf="displayNext()" (click)="next()"
+      mat-button mat-raised-button color="primary" style="width: 100%;">
+      Next
+    </button>
+  </div>
+
+  <div *ngIf="displaySubmit()">
+    <button [disabled]="!form.valid || loading" mat-button mat-raised-button color="primary" style="width: 100%;">
+      {{ submitButtonText }}
+    </button>
+
+    <span class="small-space"></span>
+
+    <div *ngIf="loading" class="loading-wrapper page-section-wrapper">
+      <mat-progress-spinner color="primary" mode="indeterminate"></mat-progress-spinner>
+    </div>
+  </div>
+
+
 </form>

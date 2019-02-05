@@ -1,5 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {DmWoocommerceCartService} from '../../modules/woocomerce/services/dm-woocommerce-cart.service';
+import {DmWoocommerceCartService} from '../../woocomerce/services/dm-woocommerce-cart.service';
 
 @Component({
   selector: 'app-add-to-cart',

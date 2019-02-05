@@ -25,14 +25,13 @@ import {RouterModule} from '@angular/router';
 import {routes} from './routes';
 import { CartComponent } from './cart/cart.component';
 import {UtilsModule} from './modules/utils/utils.module';
-import { CheckoutComponent } from './checkout/checkout.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { SearchListComponent } from './search-list/search-list.component';
 import { SearchComponent } from './search/search.component';
 import { ProductComponent } from './components/product/product.component';
 import {DmfbCrudModule} from './modules/crud/dmfb-crud.module';
 import { CheckoutConfirmationComponent } from './checkout-confirmation/checkout-confirmation.component';
-import { AddToCartComponent } from './components/add-to-cart/add-to-cart.component';
+import {SharedModule} from './modules/shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -41,12 +40,10 @@ import { AddToCartComponent } from './components/add-to-cart/add-to-cart.compone
     ProductsComponent,
     HomeComponent,
     CartComponent,
-    CheckoutComponent,
     SearchListComponent,
     SearchComponent,
     ProductComponent,
     CheckoutConfirmationComponent,
-    AddToCartComponent,
   ],
   entryComponents: [
     CheckoutConfirmationComponent,
@@ -78,6 +75,7 @@ import { AddToCartComponent } from './components/add-to-cart/add-to-cart.compone
     MatProgressBarModule,
 
     WoocomerceModule,
+    SharedModule,
 
     RouterModule.forRoot(routes),
   ],

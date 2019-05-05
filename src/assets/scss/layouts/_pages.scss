@@ -1,3 +1,27 @@
+html {
+  // This defines whta 1 rem is
+  font-size: 62.5%;
+
+  @include responsive(tab-land) {
+    font-size: 56.25%;
+  }
+
+  @include responsive(tab-port) {
+    font-size: 50%;
+  }
+
+  @include responsive(big-desktop) {
+    //font-size: 75%;
+    font-size: 62.5%;
+  }
+}
+
+body {
+  box-sizing: border-box;
+  padding: 3rem;
+  font-size: $default-font-size;
+}
+
 .gradient-bg {
   background: #fff; /* For browsers that do not support gradients */
   background: -webkit-linear-gradient(bottom right, #fff, #e6edef); /* For Safari 5.1 to 6.0 */
@@ -15,8 +39,13 @@
   height: 100vh;
 }
 
+.dm-text-center {
+  text-align: center;
+}
+
 .page-section-wrapper {
-  padding: 15px 40px;
+  //padding: 15px 40px;
+  padding: 15px;
 }
 
 .avatar {
@@ -119,3 +148,15 @@
   //  width: 100%;
   //}
 }
+
+//.outer-layer {
+//  position: relative;
+//  height: 100%;
+//
+//  .inner-layer-v-middle {
+//    position: absolute;
+//    top: 50%;
+//    left: 50%;
+//    transform: translate(-50%, -50%);
+//  }
+//}

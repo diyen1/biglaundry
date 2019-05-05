@@ -13,7 +13,7 @@ import {
   MatDatepickerModule,
   MatFormFieldModule,
   MatIconModule, MatInputModule,
-  MatListModule, MatNativeDateModule, MatProgressBarModule, MatProgressSpinnerModule,
+  MatListModule, MatNativeDateModule, MatProgressBarModule, MatProgressSpinnerModule, MatSelectModule,
   MatTabsModule,
   MatToolbarModule
 } from '@angular/material';
@@ -32,6 +32,8 @@ import { ProductComponent } from './components/product/product.component';
 import {DmfbCrudModule} from './modules/crud/dmfb-crud.module';
 import { CheckoutConfirmationComponent } from './checkout-confirmation/checkout-confirmation.component';
 import {SharedModule} from './modules/shared/shared.module';
+import { AccountComponent } from './account/account.component';
+import { TermsAndConditionsComponent } from './terms-and-conditions/terms-and-conditions.component';
 
 @NgModule({
   declarations: [
@@ -44,6 +46,8 @@ import {SharedModule} from './modules/shared/shared.module';
     SearchComponent,
     ProductComponent,
     CheckoutConfirmationComponent,
+    AccountComponent,
+    TermsAndConditionsComponent,
   ],
   entryComponents: [
     CheckoutConfirmationComponent,
@@ -73,6 +77,7 @@ import {SharedModule} from './modules/shared/shared.module';
     MatNativeDateModule,
     MatProgressSpinnerModule,
     MatProgressBarModule,
+    MatSelectModule,
 
     WoocomerceModule,
     SharedModule,

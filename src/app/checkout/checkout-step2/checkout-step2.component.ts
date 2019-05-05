@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import {FormControl, FormGroup} from '@angular/forms';
+import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {Router} from '@angular/router';
+import {CheckoutService} from '../services/checkout.service';
+import {DmWoocommerceOrdersService} from '../../modules/woocomerce/services/dm-woocommerce-orders.service';
 
 @Component({
   selector: 'app-checkout-step2',
@@ -16,13 +18,16 @@ export class CheckoutStep2Component implements OnInit {
   deliveryTime: FormControl;
   deliveryNotes: FormControl;
 
-  constructor(private router: Router) {
+  constructor(
+    private router: Router,
+    private orderService: DmWoocommerceOrdersService,
+    ) {
   }
 
   ngOnInit() {
 
-    this.collectionDate = new FormControl('', []);
-    this.collectionTime = new FormControl('', []);
+    this.collectionDate = new FormControl(this.orderService.orderMeta.collectionDate, [Validators.required]);
+    this.collectionTime = new FormControl(this.orderService.orderMeta.collectionTime, [Validators.required]);
     this.deliveryDate = new FormControl('', []);
     this.deliveryTime = new FormControl('', []);
     this.deliveryNotes = new FormControl('', []);
@@ -37,7 +42,8 @@ export class CheckoutStep2Component implements OnInit {
   }
 
   onSubmit (formValue) {
-    this.router.navigate(['/checkout/payment']);
+    this.orderService.updateCollectionTime(formValue);
+    this.router.navigate(['/checkout/basket']);
   }
 
 }

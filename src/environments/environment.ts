@@ -2,31 +2,32 @@
 // `ng build --prod` replaces `environment.ts` with `environment.prod.ts`.
 // The list of file replacements can be found in `angular.json`.
 
-// const baseUrl = 'https://diyenmomjang.com';
-// const wcEndpoint = '/wp-json/wc/v3';
-//
-// export const environment = {
-//   production: false,
-//   origin: baseUrl,
-//   wcEndpoint: wcEndpoint,
-//   wcOrigin: baseUrl + wcEndpoint,
-//   woocommerce: {
-//     consumer_key:  'ck_1434416b1651805727e56b73629ade1fec55ee37',
-//     consumer_secret: 'cs_0815b704521bf882ef9f70322ff9a81a6f9410f7'
-//   }
-// };
+const baseUrl = 'http://localhost/biglaundry';
+const wcEndpoint = '/wp-json/wc/v3';
 
 export const environment = {
   production: false,
-  origin: 'http://localhost/biglaundry',
-  wcEndpoint: '/wp-json/wc/v3',
-  wcOrigin: 'http://localhost/biglaundry/wp-json/wc/v3',
-  wcLegacyOrigin: 'http://localhost/biglaundry/wp-json/wc/v2',
+  origin: baseUrl,
+  wcEndpoint: wcEndpoint,
+  wcOrigin: baseUrl + wcEndpoint,
   woocommerce: {
     consumer_key:  'ck_34abd82a5862d33fd95beb99fe6ff0463d016097',
     consumer_secret: 'cs_a7c9e95666beedf199f085a5a970a0d42c0bca31'
   }
 };
+
+// export const environment = {
+//   production: false,
+//   // origin: 'http://localhost/biglaundry',
+//   origin: '/api',
+//   wcEndpoint: '/wp-json/wc/v3',
+//   wcOrigin: '/api/wp-json/wc/v3',
+//   wcLegacyOrigin: '/api/wp-json/wc/v2',
+//   woocommerce: {
+//     consumer_key:  'ck_34abd82a5862d33fd95beb99fe6ff0463d016097',
+//     consumer_secret: 'cs_a7c9e95666beedf199f085a5a970a0d42c0bca31'
+//   }
+// };
 
 
 /*

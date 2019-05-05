@@ -4,6 +4,12 @@
   top: 0;
   left: 0;
   z-index: 100;
+
+  &:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
 }
 
 .nav-wrapper {
@@ -17,6 +23,14 @@
   border: none;
   color: #fff;
   padding-left: 0;
+  margin-right: 10px;
+  display: inline-block;
+  max-width: 30px;
+
+  &:active,
+  &:focus {
+    outline: none;
+  }
 }
 
 .nav-back, .nav-title {

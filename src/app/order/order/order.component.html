@@ -1,0 +1,34 @@
+<div *ngIf="order && order != null" class="product-item">
+  <!--<div class="add-item">-->
+    <!--<div class="cart-add-to-cart">-->
+      <!--<app-add-to-cart-->
+        <!--[quantity]="woocommerceCartService.getItemCount(product.id)"-->
+        <!--[cartItem]="product"></app-add-to-cart>-->
+    <!--</div>-->
+  <!--</div>-->
+  <div class="product-item-heading">Order ID - #{{ order.id }}</div>
+  <div class="row">
+    <div class="col-6-sm">Price:</div>
+    <div class="col-6-sm">{{ order.total | currency:'XAF':'':'1.0-0' }} frs</div>
+  </div>
+  <div class="row">
+    <div class="col-6-sm">Pickup time:</div>
+    <!--<div class="col-6-sm">{{ orderDate | date:'medium' }}</div>-->
+  </div>
+
+
+  <!--<div class="item-details">-->
+    <!--<div>-->
+      <!--<div class="product-item-heading">Order ID - #{{ order.id }}</div>-->
+      <!--<div class=""></div>-->
+      <!--&lt;!&ndash;<small [innerHtml]="order.description"></small>&ndash;&gt;-->
+    <!--</div>-->
+  <!--</div>-->
+  <!--<div class="item-price">-->
+    <!--<div>-->
+      <!--<div></div>-->
+      <!--<div class=""></div>-->
+    <!--</div>-->
+  <!--</div>-->
+</div>
+

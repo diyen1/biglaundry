@@ -40,8 +40,6 @@ export class DmWoocommerceInterceptor implements HttpInterceptor {
       url = urlParts[0];
       const paramsParts = urlParts[1].split('&');
 
-      console.log('paramsParts', paramsParts);
-
       for (let i = 0; i < paramsParts.length; i++) {
         const paramsKeyValue = paramsParts[i].split('=');
         params[paramsKeyValue[0]] = paramsKeyValue[1];
@@ -62,6 +60,7 @@ export class DmWoocommerceInterceptor implements HttpInterceptor {
       oauth_timestamp: currentTimestamp,
       oauth_version: '1.0',
     };
+
     const parameters = Object.assign({}, authParam, params);
     let signatureStr = '';
     Object.keys(parameters).sort().forEach(function (key) {
@@ -94,8 +93,8 @@ export class DmWoocommerceInterceptor implements HttpInterceptor {
       + `&oauth_version=${authParam.oauth_version}`
       + `&oauth_signature=${Base64.stringify(hmacSHA1(
         method + '&' + encodeURIComponent(url) + '&' + encodeURIComponent(signatureStr), environment.woocommerce.consumer_secret + '&'
-      ))}` + paramStr
-    ;
+      ))}` + paramStr;
+
     const hasQuery = url.includes('?');
     let return_url = '';
     if (hasQuery) {

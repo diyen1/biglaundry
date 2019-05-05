@@ -1,0 +1,11 @@
+<form [formGroup]="form">
+  <mat-form-field class="full-width">
+    <mat-label>Phone Number</mat-label>
+    <input
+      matInput
+      type="tel"
+      placeholder="Phone Number"
+      formControlName="phoneField"
+      (input)="change($event)">
+  </mat-form-field>
+</form>

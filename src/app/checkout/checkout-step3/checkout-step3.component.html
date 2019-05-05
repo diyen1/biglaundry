@@ -14,15 +14,11 @@
         [cartItem]="cartItem"></app-add-to-cart>
     </div>
     <div class="cart-item-details">
-      <span class="xx-small-space horizontal"></span>
-      Shirt
-      <div>
-        <div class="xx-small-space"></div>
-        <span class="xx-small-space horizontal"></span>
-        <img src="https://odesk-prod-portraits.s3.amazonaws.com/Users:diyen1:PortraitUrl_100?AWSAccessKeyId=AKIAIKIUKM3HBSWUGCNQ&Expires=2147483647&Signature=MhyS4AF3oZke%2BKKdNzwSGwROuzA%3D&1548189085868"/>
-      </div>
+      <div class="small-space"></div>
+      {{ cartItem.product_name }}
     </div>
     <div class="cart-item-price">
+      <div class="small-space"></div>
       {{ cartItem.quantity * cartItem.price | currency:'XAF':'':'1.0-0' }} frs <span
       class="xx-small-space horizontal"></span>
       <a class="text-icon" (click)="woocommerceCartService.removeFromCart(cartItem, -1)">x</a>
@@ -37,19 +33,6 @@
 <div style="background: #ccc; height: 1px;"></div>
 <div class="x-small-space"></div>
 
-
-<div class="x-small-space"></div>
-<div>
-  <mat-form-field class="full-width" appearance="fill">
-    <!--<mat-label>Voucher code</mat-label>-->
-    <input matInput
-           type="text"
-           name="voucher_code"
-           placeholder="Enter voucher code">
-  </mat-form-field>
-</div>
-<div class="small-space"></div>
-
 <div class="cart-items-wrapper">
   <div class="cart-item-details"><strong>Total</strong></div>
   <div class="cart-item-price"><strong>{{ woocommerceCartService.totalPrice | currency:'XAF':'':'1.0-0' }}
@@ -57,7 +40,15 @@
   <div class="clearfix"></div>
 </div>
 <div class="xx-small-space"></div>
-<div class="checkout-subsection-heading">10,000 frs minimum order</div>
+<div class="checkout-subsection-heading">5,000 frs minimum order</div>
 
 <div class="x-small-space"></div>
 <div style="background: #ccc; height: 1px;"></div>
+
+<p></p>
+<div>
+  <button [disabled]="!orderIsValid()" mat-button mat-raised-button color="primary" class="full-width" (click)="next()">
+    Next
+  </button>
+  <span class="small-space"></span>
+</div>

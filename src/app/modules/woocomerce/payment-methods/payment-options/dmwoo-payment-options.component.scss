@@ -1,0 +1,10 @@
+.payment-option {
+  &:not(:last-child) {
+    margin-bottom: 20px;
+  }
+}
+.payment-option-description {
+  margin-top: 15px;
+  background: #eee;
+  padding: 10px;
+}

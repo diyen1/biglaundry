@@ -1,0 +1,21 @@
+<!--<mat-toolbar color="primary">-->
+<!--<mat-icon>arrow_back</mat-icon> <span *ngIf="subcategory && subcategory != null">{{ subcategory.name }}</span>-->
+<!--</mat-toolbar>-->
+
+<util-nav [title]="'My Orders'"></util-nav>
+
+<div *ngIf="loading" class="loading-wrapper page-section-wrapper">
+  <mat-progress-bar color="primary" mode="indeterminate"></mat-progress-bar>
+</div>
+
+<div *ngIf="!loading">
+  <div *ngIf="orders && orders.length > 0">
+    <div class="order-items-list">
+      <app-order [order]="order" *ngFor="let order of orders">
+      </app-order>
+    </div>
+  </div>
+  <div *ngIf="!(orders && orders.length > 0)" class="page-section-wrapper">
+    You haven't placed any orders yet
+  </div>
+</div>

@@ -26,7 +26,6 @@ export class SubCategoriesComponent implements OnInit {
         value: this.parentId,
       }
     ]).subscribe((subcategories: any) => {
-      console.log('res', subcategories);
       this.subcategories = subcategories;
       this.loading = false;
     }, () => {

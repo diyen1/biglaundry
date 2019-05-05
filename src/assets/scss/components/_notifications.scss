@@ -1,0 +1,9 @@
+.dm-notification {
+
+  padding: 15px 15px;
+  background: #f7f7f7;
+
+  &.dm-error {
+    border-left: $error-color solid 5px;
+  }
+}

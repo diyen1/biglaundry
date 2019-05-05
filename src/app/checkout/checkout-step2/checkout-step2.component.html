@@ -1,23 +1,34 @@
 <form novalidate [formGroup]="form" (submit)="onSubmit(form.value)">
-  <div>
-    <mat-form-field  class="full-width">
-      <mat-label>Collection Date</mat-label>
-      <input matInput
-             type="text"
-             name="collectionDate"
-             placeholder="Collection Date"
-             formControlName="collectionDate">
-    </mat-form-field>
-  </div>
+
+  <div class="small-space"></div>
 
   <div>
+    <!--<strong>Collection Date</strong><br>-->
     <mat-form-field class="full-width">
-      <mat-label>Collection Time</mat-label>
-      <input matInput
-             type="text"
-             name="collectionTime"
-             placeholder="Collection Time"
-             formControlName="collectionTime">
+      <!--<mat-label>Collection Date</mat-label>-->
+      <input matInput [matDatepicker]="collectionDatepicker" placeholder="Collection Date"
+             formControlName="collectionDate">
+      <mat-datepicker-toggle matSuffix [for]="collectionDatepicker"></mat-datepicker-toggle>
+      <mat-datepicker #collectionDatepicker></mat-datepicker>
+    </mat-form-field>
+    <!--<mat-form-field class="full-width">-->
+    <!--<mat-label>Delivery Time</mat-label>-->
+    <!--<input matInput type="text" placeholder="Delivery Time" formControlName="deliveryTime">-->
+    <!--</mat-form-field>-->
+  </div>
+
+  <div class="x-small-space"></div>
+
+  <div>
+    <strong>Collection Time</strong><br>
+    <mat-form-field  class="full-width">
+      <mat-select
+        name="collectionTime"
+        formControlName="collectionTime"
+        matNativeControl required>
+        <mat-option value="8:00am">8:00am</mat-option>
+        <mat-option value="6:00pm">6:00pm</mat-option>
+      </mat-select>
     </mat-form-field>
   </div>
 

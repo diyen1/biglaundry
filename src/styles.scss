@@ -8,9 +8,14 @@ $color-accent: "255,215,64";
 $color-primary-contrast: "255,255,255";
 $color-accent-contrast: "0,0,0";
 
-@import "assets/styles/components/elements";
-@import "assets/styles/components/spaces";
-@import "assets/styles/layouts/header";
-@import "assets/styles/layouts/pages";
+@import "assets/scss/common/variables";
+@import "assets/scss/common/mixens";
+@import "assets/scss/components/elements";
+@import "assets/scss/components/spaces";
+@import "assets/scss/components/notifications";
+@import "assets/scss/components/forms";
+@import "assets/scss/layouts/grid";
+@import "assets/scss/layouts/header";
+@import "assets/scss/layouts/pages";
 
-@import "assets/styles/layouts/products";
+@import "assets/scss/layouts/products";

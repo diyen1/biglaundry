@@ -28,7 +28,6 @@ export class ProductsComponent implements OnInit {
 
         // fetching category information
         this.woocommerceProductsService.getCategory(id).subscribe((subcategory: any) => {
-          console.log('res', subcategory);
           this.subcategory = subcategory;
         });
 
@@ -41,7 +40,6 @@ export class ProductsComponent implements OnInit {
             value: id,
           }
         ]).subscribe((products: any) => {
-          console.log('res', products);
           this.products = products;
           this.loading = false;
         }, () => {

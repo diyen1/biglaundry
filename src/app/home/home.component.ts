@@ -1,6 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {DmWoocommerceProductsService} from '../modules/woocomerce/services/dm-woocommerce-products.service';
 import {AppService} from '../app.service';
+
+interface IMenu {
+  name: string;
+  label: string;
+  woocommerceId: string;
+}
 
 @Component({
   selector: 'app-home',
@@ -11,7 +17,7 @@ export class HomeComponent implements OnInit {
 
   title = 'biglaundry';
 
-  menu = [];
+  menu: IMenu[] = [];
 
   constructor(
     private woocommerceProductsService: DmWoocommerceProductsService,
@@ -67,9 +73,20 @@ export class HomeComponent implements OnInit {
 
   ngOnInit() {
 
-    this.appService.getSiteCategories().subscribe((menu: any) => {
+    let storedMenuString = localStorage.getItem('biglaundry_menu');
+
+    if (!storedMenuString || storedMenuString == null || storedMenuString === '') {
+      storedMenuString = '[]';
+    }
+
+    this.menu = JSON.parse(storedMenuString) as IMenu[];
+
+    // TODO fetch everyday but not everytime
+    this.appService.getSiteCategories().subscribe((menu: IMenu[]) => {
       this.menu = menu;
+      localStorage.setItem('biglaundry_menu', JSON.stringify(this.menu));
     });
+
     /*this.wooProducs.retrieveProducts().subscribe(response => {
       console.log(response);
     }, err => {

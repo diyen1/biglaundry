@@ -167,9 +167,9 @@ export class CheckoutComponent implements OnInit {
       // ]
     };
 
-    this.woocommerceOrderService.addOrder(formValue).subscribe((res) => {
-      console.log('order', res);
-    });
+    // this.woocommerceOrderService.addOrder(formValue).subscribe((res) => {
+    //   console.log('order', res);
+    // });
   }
 
 }

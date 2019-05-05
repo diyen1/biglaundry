@@ -1,13 +1,20 @@
 <mat-toolbar class="home-nav">
-  <div class="home-nav-title">
-    <h4 class="nav-title">Big Laundry</h4>
+  <div class="row">
+    <div class="home-nav-title col-6-sm">
+      <h4 class="nav-title">Big Laundry</h4>
+    </div>
+    <div class="home-nav-buttons col-6-sm right">
+      <a routerLink="/account">
+        <mat-icon>account_circle</mat-icon>
+      </a>
+      <a routerLink="/order/mine">
+        <mat-icon>local_laundry_service</mat-icon>
+      </a>
+      <a routerLink="/search">
+        <mat-icon>search</mat-icon>
+      </a>
+    </div>
   </div>
-  <div class="home-nav-buttons">
-    <a routerLink="/search" style="float: right;">
-      <mat-icon>search</mat-icon>
-    </a>
-  </div>
-  <div class="clearfix"></div>
 </mat-toolbar>
 <mat-tab-group
   *ngIf="menu && menu.length > 0"

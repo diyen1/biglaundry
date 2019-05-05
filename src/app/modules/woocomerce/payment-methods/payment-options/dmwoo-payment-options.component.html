@@ -1,0 +1,37 @@
+<!--<form [formGroup]="form">-->
+<!--<mat-form-field class="full-width">-->
+<!--<mat-label>Phone Number</mat-label>-->
+<!--<input-->
+<!--matInput-->
+<!--type="tel"-->
+<!--placeholder="Phone Number"-->
+<!--formControlName="phoneField"-->
+<!--(input)="change($event)">-->
+<!--</mat-form-field>-->
+<!--</form>-->
+<form *ngIf="form && form != null" [formGroup]="form">
+  <div *ngIf="!loading" class="payment-options-wrapper">
+    <mat-radio-group class="example-radio-group" formControlName="paymentOptionField" (change)="changePaymentmenthod()">
+      <div *ngFor="let paymentGateway of paymentGateways" class="payment-option">
+        <div class="payment-option-title">
+          <mat-radio-button class="example-radio-button" value="{{ paymentGateway.id }}">
+            <strong>{{ paymentGateway.method_title }}</strong>
+          </mat-radio-button>
+        </div>
+        <div class="payment-option-description"
+             [style.display]="form.get('paymentOptionField').value == paymentGateway.id ? 'block': 'none'">
+          <div>{{ paymentGateway.description }}</div>
+          <div class="x-small-space"></div>
+          <div>
+            <dmwoo-momo *ngIf="paymentGateway.id === 'mtn_mobile_money_cameroon'"></dmwoo-momo>
+            <dmwoo-om *ngIf="paymentGateway.id === 'orange_money_cameroon'"></dmwoo-om>
+          </div> <!-- (outputPaymentValid)="updateFormValidity($event, 'momo')" -->
+        </div>
+      </div>
+    </mat-radio-group>
+  </div>
+</form>
+
+<div *ngIf="loading">
+  Loading ...
+</div>

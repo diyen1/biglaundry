@@ -8,7 +8,7 @@ import {
   MatCardModule,
   MatCheckboxModule, MatDatepickerModule, MatFormFieldModule,
   MatIconModule, MatInputModule,
-  MatListModule, MatNativeDateModule, MatProgressBarModule, MatProgressSpinnerModule, MatSelectModule,
+  MatListModule, MatNativeDateModule, MatProgressBarModule, MatProgressSpinnerModule, MatRadioModule, MatSelectModule,
   MatTabsModule,
   MatToolbarModule
 } from '@angular/material';
@@ -46,6 +46,7 @@ const CUSTOMER_COMPONENTS = [
     MatProgressSpinnerModule,
     MatProgressBarModule,
     MatSelectModule,
+    MatRadioModule,
 
     ReactiveFormsModule,
     CommonModule,

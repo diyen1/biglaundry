@@ -1,0 +1,11 @@
+.required-field-label {
+  position: relative;
+
+  &::after {
+    content: "*";
+    position: absolute;
+    right: -10px;
+    top: 0;
+    color: $error-color;
+  }
+}

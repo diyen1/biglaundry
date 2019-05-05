@@ -1,0 +1,69 @@
+<util-nav [title]="'My Account'"></util-nav>
+
+<div class="page-section-wrapper">
+  <form novalidate [formGroup]="form" (submit)="onSubmit(form.value)">
+
+    <div class="small-space"></div>
+    <div>
+      <strong class="required-field-label">Town / City</strong><br>
+      <mat-form-field class="full-width">
+        <mat-select
+          formControlName="city"
+          matNativeControl required title="Town / City<">
+          <mat-option value="buea">Buea</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+    <div class="x-small-space"></div>
+
+    <div>
+      <strong class="required-field-label">Quarter / Locality</strong><br>
+      <mat-form-field class="full-width">
+        <mat-select
+          name="addressLine1"
+          formControlName="address_1"
+          matNativeControl required>
+          <mat-option value="Tarred Malingo">Tarred Malingo</mat-option>
+          <mat-option value="Un-tarred Malingo">Un-tarred Malingo</mat-option>
+          <mat-option value="Fotabe House">Fotabe House</mat-option>
+          <mat-option value="Check point">Check point</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+    <div class="x-small-space"></div>
+
+    <div>
+      <strong class="required-field-label">Phone</strong><br>
+      <mat-form-field class="full-width">
+        <input
+          matInput
+          type="tel"
+          placeholder="Phone Number"
+          formControlName="phone"/>
+      </mat-form-field>
+    </div>
+
+    <div>
+      <strong class="required-field-label">Name</strong><br>
+      <mat-form-field class="full-width">
+        <input
+          matInput
+          type="text"
+          placeholder="Name"
+          formControlName="name"/>
+      </mat-form-field>
+    </div>
+
+
+    <p></p>
+    <div>
+      <button [disabled]="!form.valid" mat-button mat-raised-button color="primary" class="full-width">
+        Update
+      </button>
+      <span class="small-space"></span>
+    </div>
+  </form>
+
+</div>

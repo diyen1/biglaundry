@@ -1,109 +1,22 @@
 <util-nav [title]="'Checkout'"></util-nav>
 
 <div class="page-section-wrapper">
-  <router-outlet></router-outlet>
+
+  <div *ngIf="cartService.cart && cartService.cart.length > 0">
+    <router-outlet></router-outlet>
+  </div>
+
+  <div *ngIf="!(cartService.cart && cartService.cart.length > 0)" class="empty-cart-wrapper">
+
+    <div><mat-icon>shopping_basket</mat-icon></div>
+    <p>Your basket is empty</p>
+
+    <div class="small-space"></div>
+    <button
+      mat-button mat-raised-button
+      color="primary" class="full-width"
+      routerLink="/home">
+      Home
+    </button>
+  </div>
 </div>
-
-<!--<form [formGroup]="form" (submit)="order(form.value)">-->
-  <!--<div class="page-section-wrapper">-->
-    <!--<div class="checkout-subsection-heading">Address</div>-->
-    <!--<mat-form-field class="full-width">-->
-      <!--<mat-label>Phone Number</mat-label>-->
-      <!--<input matInput type="tel" placeholder="Phone Number" formControlName="phone">-->
-    <!--</mat-form-field>-->
-    <!--<mat-form-field class="full-width">-->
-      <!--<mat-label>Line 1</mat-label>-->
-      <!--<input matInput type="text" placeholder="Line 1" formControlName="addressLine1">-->
-    <!--</mat-form-field>-->
-    <!--<mat-form-field class="full-width">-->
-      <!--<mat-label>Line 2</mat-label>-->
-      <!--<input matInput type="text" placeholder="Line 2" formControlName="addressLine2">-->
-    <!--</mat-form-field>-->
-    <!--<mat-form-field class="full-width">-->
-      <!--<mat-label>Post Code</mat-label>-->
-      <!--<input matInput type="text" placeholder="Post Code" formControlName="postCode">-->
-    <!--</mat-form-field>-->
-    <!--<mat-form-field class="full-width">-->
-      <!--<mat-label>Delivery Notes</mat-label>-->
-      <!--<input matInput type="text" placeholder="Delivery Notes" formControlName="deliveryNotes">-->
-    <!--</mat-form-field>-->
-  <!--</div>-->
-
-  <!--<div style="background: #ccc; height: 1px;"></div>-->
-
-  <!--<div class="page-section-wrapper">-->
-    <!--<div class="checkout-subsection-heading">Collection</div>-->
-    <!--<mat-form-field class="full-width">-->
-      <!--<mat-label>Collection Date</mat-label>-->
-      <!--<input matInput [matDatepicker]="collectionDatepicker" placeholder="Collection Date" formControlName="collectionDate">-->
-      <!--<mat-datepicker-toggle matSuffix [for]="collectionDatepicker"></mat-datepicker-toggle>-->
-      <!--<mat-datepicker #collectionDatepicker></mat-datepicker>-->
-    <!--</mat-form-field>-->
-    <!--<mat-form-field class="full-width">-->
-      <!--<mat-label>Collection Time</mat-label>-->
-      <!--<input matInput type="text" placeholder="Collection Time" formControlName="collectionTime">-->
-    <!--</mat-form-field>-->
-  <!--</div>-->
-
-  <!--<div style="background: #ccc; height: 1px;"></div>-->
-
-  <!--<div class="page-section-wrapper">-->
-    <!--<div class="checkout-subsection-heading">Delivery</div>-->
-    <!--<mat-form-field  class="full-width">-->
-      <!--<mat-label>Delivery Date</mat-label>-->
-      <!--<input matInput [matDatepicker]="deliveryDatepicker" placeholder="Delivery Date" formControlName="deliveryDate">-->
-      <!--<mat-datepicker-toggle matSuffix [for]="deliveryDatepicker"></mat-datepicker-toggle>-->
-      <!--<mat-datepicker #deliveryDatepicker></mat-datepicker>-->
-    <!--</mat-form-field>-->
-    <!--<mat-form-field class="full-width">-->
-      <!--<mat-label>Delivery Time</mat-label>-->
-      <!--<input matInput type="text" placeholder="Delivery Time" formControlName="deliveryTime">-->
-    <!--</mat-form-field>-->
-  <!--</div>-->
-
-  <!--<div style="background: #ccc; height: 1px;"></div>-->
-
-  <!--&lt;!&ndash;<div class="small-space"></div>&ndash;&gt;-->
-
-  <!--<div class="page-section-wrapper">-->
-    <!--<div class="checkout-subsection-heading">Your items</div>-->
-
-    <!--<div class="cart-items-wrapper">-->
-      <!--<div *ngFor="let cartItem of woocommerceCartService.cart" class="cart-item">-->
-        <!--<div class="cart-item-details">-->
-          <!--<a class="text-icon" (click)="woocommerceCartService.addToCart(cartItem)">+</a> <span-->
-          <!--class="xx-small-space horizontal"></span>-->
-          <!--<a>{{ cartItem.quantity }}x</a> <span class="xx-small-space horizontal"></span>-->
-          <!--<a class="text-icon" (click)="woocommerceCartService.removeFromCart(cartItem)">-</a> Shirt-->
-        <!--</div>-->
-        <!--<div class="cart-item-price">-->
-          <!--{{ cartItem.quantity * cartItem.price | currency:'XAF':'':'1.0-0' }} frs <span class="xx-small-space horizontal"></span>-->
-          <!--<a class="text-icon" (click)="woocommerceCartService.removeFromCart(cartItem, -1)">x</a>-->
-        <!--</div>-->
-        <!--<div class="clearfix"></div>-->
-      <!--</div>-->
-    <!--</div>-->
-    <!--<div class="x-small-space"></div>-->
-    <!--<div><a routerLink="/search">Add Item</a></div>-->
-  <!--</div>-->
-
-  <!--<div style="background: #ccc; height: 1px;"></div>-->
-
-  <!--<div class="page-section-wrapper">-->
-    <!--<div class="cart-items-wrapper">-->
-      <!--<div class="cart-item-details"><strong>Total</strong></div>-->
-      <!--<div class="cart-item-price"><strong>{{ woocommerceCartService.totalPrice | currency:'XAF':'':'1.0-0' }} frs</strong></div>-->
-      <!--<div class="clearfix"></div>-->
-    <!--</div>-->
-    <!--<div class="xx-small-space"></div>-->
-    <!--<div class="checkout-subsection-heading">10,000 frs minimum order</div>-->
-  <!--</div>-->
-
-  <!--<div style="background: #ccc; height: 1px;"></div>-->
-
-  <!--<div class="page-section-wrapper">-->
-    <!--<div class="full-width">-->
-      <!--<button mat-button mat-raised-button color="primary" class="full-width">Place Order</button>-->
-    <!--</div>-->
-  <!--</div>-->
-<!--</form>-->

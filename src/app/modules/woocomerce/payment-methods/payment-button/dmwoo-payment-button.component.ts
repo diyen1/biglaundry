@@ -33,13 +33,6 @@ export class DmwooPaymentButtonComponent implements OnInit {
   }
 
   placeOrder() {
-    switch (this.paymentService.currentPaymentMethod) {
-      case 'mtn_mobile_money_cameroon':
-        DmwooMomoComponent.process_payment(); break;
-      case 'orange_money_cameroon':
-        DmwooOmComponent.process_payment(); break;
-      case 'cod':
-        DmwooCodComponent.process_payment(); break;
-    }
+    // this.paymentService.handlePayment();
   }
 }

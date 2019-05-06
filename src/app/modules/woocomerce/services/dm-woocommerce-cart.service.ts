@@ -116,6 +116,12 @@ export class DmWoocommerceCartService {
     }
   }
 
+  clearCart() {
+    this.cart = [];
+    this.totalPrice = 0;
+    this.storeCartData();
+  }
+
   // getCart() {
   //   const url = environment.wcLegacyOrigin + '/cart?key=404dcc91b2aeaa7caa47487d1483e48a';
   //   return this.http.get(url).subscribe((cartData: any) => {

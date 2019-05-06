@@ -6,6 +6,8 @@ import {
 } from '@angular/forms';
 import {DmWoocommercePaymentService} from '../../services/dm-woocommerce-payment.service';
 import {PaymentGateway} from '../../payment-gateway.model';
+import {PaymentMethod} from '../../payment.method';
+
 
 @Component({
   selector: 'dmwoo-payment-options',
@@ -58,5 +60,13 @@ export class DmwooPaymentOptionsComponent implements OnInit {
 
   changePaymentmenthod() {
     this.paymentService.currentPaymentMethod = this.form.get('paymentOptionField').value;
+  }
+
+  isMomo(paymentGatewayId) {
+    return paymentGatewayId === PaymentMethod.MTN_MOBILE_MONEY_CAMEROON;
+  }
+
+  isOM(paymentGatewayId) {
+    return paymentGatewayId === PaymentMethod.ORANGE_MONEY_CAMEROON;
   }
 }

@@ -13,93 +13,13 @@ export class CheckoutComponent implements OnInit {
 
   form: FormGroup;
 
-  // cart = [
-  //   {product_id: 12, quantity: 1, price: "4000"},
-  //   {product_id: 11, quantity: 2, price: "5000"},
-  //   {product_id: 10, quantity: 2, price: "3000"},
-  // ];
-
   loading = false;
-
-  fields = {
-    type: 'multistep',
-    tabs: [
-      {
-        tabName: 'Address',
-        fields: [
-          {
-            key: 'phone',
-            name: 'Phone',
-            type: 'text',
-          },
-          {
-            key: 'addressLine2',
-            name: 'Town / City',
-            type: 'select',
-            values: [
-              {'label': 'Buea', 'value': 'buea'},
-            ]
-          },
-          {
-            key: 'addressLine1',
-            name: 'Quarter / Locality',
-            type: 'select',
-            values: [
-              {'label': 'Tarred Malingo', 'value': 'tarred-malingo'},
-              {'label': 'Untarred Malingo', 'value': 'untarred-malingo'},
-              {'label': 'Check Point', 'value': 'checkpoint'},
-            ]
-          },
-        ]
-      },
-      {
-        tabName: 'Delivery',
-        col: 1,
-        fields: [
-          {
-            key: 'collectionDate',
-            name: 'Collection Date',
-            type: 'text',
-          },
-          {
-            key: 'collectionTime',
-            name: 'Collection Time',
-            type: 'text',
-          },
-          {
-            key: 'deliveryDate',
-            name: 'Delivery Date',
-            type: 'text',
-          },
-          {
-            key: 'deliveryTime',
-            name: 'Delivery Time',
-            type: 'text',
-          },
-          {
-            key: 'deliveryNotes',
-            name: 'Delivery Notes',
-            type: 'text_area',
-          },
-        ]
-      },
-      {
-        tabName: 'Order Confirmation',
-        fields: [
-          {
-            key: 'app-checkout-confirmation',
-            component: CheckoutConfirmationComponent,
-            name: 'app-checkout-confirmation',
-            type: 'component',
-          },
-        ]
-      },
-  ]};
 
   constructor(
     private fb: FormBuilder,
     public woocommerceCartService: DmWoocommerceCartService,
     public woocommerceOrderService: DmWoocommerceOrdersService,
+    public cartService: DmWoocommerceCartService,
     ) {
     this.form =  fb.group({
       'phone':  ['', Validators.required],

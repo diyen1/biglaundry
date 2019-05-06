@@ -11,7 +11,7 @@ import {PaymentOption} from '../../payment-gateway.model';
   templateUrl: './dmwoo-cod.component.html',
   styleUrls: ['./dmwoo-cod.component.scss'],
 })
-export class DmwooCodComponent extends PaymentOption implements OnInit {
+export class DmwooCodComponent implements OnInit {
 
   @Input() isRequired = true;
   @Output() outputPaymentValid: any = new EventEmitter<boolean>();
@@ -22,7 +22,6 @@ export class DmwooCodComponent extends PaymentOption implements OnInit {
   phoneField;
 
   constructor() {
-    super();
   }
 
   ngOnInit() {

@@ -15,7 +15,8 @@ export class AccountComponent implements OnInit {
   city: FormControl;
 
   phone: FormControl;
-  name: FormControl;
+  first_name: FormControl;
+  last_name: FormControl;
 
   constructor(
     private router: Router,
@@ -29,7 +30,11 @@ export class AccountComponent implements OnInit {
     this.city = new FormControl(this.orderService.order.billing.city, [Validators.required]);
 
     this.phone = new FormControl(this.orderService.order.billing.phone, [Validators.required]);
-    this.name = new FormControl(
+    this.first_name = new FormControl(
+      this.orderService.order.billing.first_name,
+      [Validators.required]
+    );
+    this.last_name = new FormControl(
       this.orderService.order.billing.last_name,
       [Validators.required]
     );
@@ -38,7 +43,8 @@ export class AccountComponent implements OnInit {
       address_1: this.address_1,
       city: this.city,
       phone: this.phone,
-      name: this.name,
+      first_name: this.first_name,
+      last_name: this.last_name,
     });
   }
 

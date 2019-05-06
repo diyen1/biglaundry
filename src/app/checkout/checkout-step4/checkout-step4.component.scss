@@ -1,3 +1,39 @@
-.payment-option-details {
-  margin-left: 30px;
+.loading-wrapper {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background: rgba(0, 0, 0, .5);
 }
+
+.loading-wrapper-inner {
+  position: relative;
+  height: 100vh;
+
+  > div {
+    position: absolute;
+    padding: 15px;
+    background: #fff;
+    min-width: 300px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+  }
+}
+
+.payment-option {
+  &:not(:last-child) {
+    margin-bottom: 20px;
+  }
+}
+
+.payment-option-description {
+  margin-top: 15px;
+  background: #eee;
+  padding: 10px;
+}
+
+//.payment-option-details {
+//  margin-left: 30px;
+//}

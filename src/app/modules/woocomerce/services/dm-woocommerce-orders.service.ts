@@ -6,6 +6,8 @@ import {Order} from 'ngx-wooapi';
 import {addParamsToUrl} from '../../add-params-to-url';
 import {Billing, Shipping} from 'ngx-wooapi/orders/orders.interface';
 import {LOrder} from '../l-order.model';
+import {PaymentMethod} from '../payment.method';
+import {PaymentStatus} from '../payment-status.enum';
 
 @Injectable({
   providedIn: 'root'
@@ -71,7 +73,7 @@ export class DmWoocommerceOrdersService {
     // shipping_lines: [],
     // shipping_tax: '',
     // shipping_total: '',
-    // status: '',
+    status: PaymentStatus.PENDING,
     // tax_lines: [],
     // total: '',
     // total_tax: '',
@@ -115,8 +117,10 @@ export class DmWoocommerceOrdersService {
   updateAccount(data) {
     this.order.billing.address_1 = data.address_1;
     this.order.billing.city = data.city;
-    this.order.billing.last_name = data.name;
+    this.order.billing.first_name = data.first_name;
+    this.order.billing.last_name = data.last_name;
     this.order.billing.phone = data.phone;
+    this.order.billing.email = data.email;
 
     localStorage.setItem('biglaundry_billing', JSON.stringify(this.order.billing));
   }
@@ -141,58 +145,70 @@ export class DmWoocommerceOrdersService {
   }
 
   updatePayment(data) {
-    this.order.payment_method = data.paymentMethod;
+    this.updateAddress(data);
+    this.order.payment_method = data.payment_method;
+    this.order.payment_method_title = data.payment_method_title;
+
+    // PaymentStatus
+    if (this.order.payment_method === PaymentMethod.CASH_ON_DELIVERY) {
+      this.order.status = PaymentStatus.PENDING;
+    } else {
+      this.order.status = PaymentStatus.PROCESSING;
+    }
   }
 
   addOrder() {
-    // params = {
-    //   "payment_method": "MomMo",
-    //   "payment_method_title": "Mtn Mobile Money",
-    //   "set_paid": true,
-    //   "billing": {
-    //     "first_name": "Diyen",
-    //     "last_name": "Momjang",
-    //     "address_1": "Green Court, Molyko",
-    //     "address_2": "",
-    //     "city": "Buea",
-    //     // "state": "CA",
-    //     // "postcode": "94103",
-    //     "country": "Cameroon",
-    //     // "email": "john.doe@example.com",
-    //     "phone": "(555) 555-5555"
-    //   },
-    //   "shipping": {
-    //     "first_name": "Diyen",
-    //     "last_name": "Momjang",
-    //     "address_1": "Green Court, Molyko",
-    //     "address_2": "",
-    //     "city": "Buea",
-    //     // "state": "CA",
-    //     // "postcode": "94103",
-    //     "country": "Cameroon"
-    //   },
-    //   "line_items": this.woocommerceCart.cart,
-    //   //   [
-    //   //   {
-    //   //     "product_id": 93,
-    //   //     "quantity": 2
-    //   //   },
-    //   //   {
-    //   //     "product_id": 22,
-    //   //     "variation_id": 23,
-    //   //     "quantity": 1
-    //   //   }
-    //   // ],
-    //   // "shipping_lines": [
-    //   //   {
-    //   //     "method_id": "flat_rate",
-    //   //     "method_title": "Flat Rate",
-    //   //     "total": 10
-    //   //   }
-    //   // ]
-    // };
     console.log('posting order ...', this.order);
     const url = environment.wcOrigin + '/orders';
     return this.http.post(url, this.order);
   }
 }
+
+/* Dirty addOrder patams */
+
+// params = {
+//   "payment_method": "MomMo",
+//   "payment_method_title": "Mtn Mobile Money",
+//   "set_paid": true,
+//   "billing": {
+//     "first_name": "Diyen",
+//     "last_name": "Momjang",
+//     "address_1": "Green Court, Molyko",
+//     "address_2": "",
+//     "city": "Buea",
+//     // "state": "CA",
+//     // "postcode": "94103",
+//     "country": "Cameroon",
+//     // "email": "john.doe@example.com",
+//     "phone": "(555) 555-5555"
+//   },
+//   "shipping": {
+//     "first_name": "Diyen",
+//     "last_name": "Momjang",
+//     "address_1": "Green Court, Molyko",
+//     "address_2": "",
+//     "city": "Buea",
+//     // "state": "CA",
+//     // "postcode": "94103",
+//     "country": "Cameroon"
+//   },
+//   "line_items": this.woocommerceCart.cart,
+//   //   [
+//   //   {
+//   //     "product_id": 93,
+//   //     "quantity": 2
+//   //   },
+//   //   {
+//   //     "product_id": 22,
+//   //     "variation_id": 23,
+//   //     "quantity": 1
+//   //   }
+//   // ],
+//   // "shipping_lines": [
+//   //   {
+//   //     "method_id": "flat_rate",
+//   //     "method_title": "Flat Rate",
+//   //     "total": 10
+//   //   }
+//   // ]
+// };

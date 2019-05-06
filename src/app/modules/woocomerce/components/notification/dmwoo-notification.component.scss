@@ -1,0 +1,21 @@
+table {
+
+  .notification-icon {
+    width: 40px;
+    position: relative;
+
+    mat-icon {
+      position: absolute;
+      left: 0;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+  }
+}
+
+.error {
+  .mat-icon {
+    -webkit-text-fill-color: var(--color-error);
+    color: var(--color-error);
+  }
+}

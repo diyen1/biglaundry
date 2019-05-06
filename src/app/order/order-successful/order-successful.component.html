@@ -1,18 +1,54 @@
-<util-nav [title]="'Order Successful'"></util-nav>
+<util-nav [title]="'Order Successful'" [back]="'home'"></util-nav>
 
-<div class="page-section-wrapper">
-  <div class="order-success-check-wrapper">
-    <div class="order-success-check-wrapper-inner">
-      <mat-icon @openClose class="order-success-check">check</mat-icon>
+<div class="page-section-wrapper" *ngIf="order && order != null && !loading">
+  <div class="row">
+    <div class="col-6">
+      <div class="order-success-check-wrapper">
+        <div class="order-success-check-wrapper-inner">
+          <mat-icon @openClose class="order-success-check">check</mat-icon>
+        </div>
+      </div>
+      <div class="small-space"></div>
+    </div>
+
+    <div class="col-6">
+
+      <p>Thank you. Your order has been received.</p>
+
+      <h3>Order number: {{ order.id }}</h3>
+      <p>Date Created: {{ order.date_created | date }}</p>
+      <p>Payment Method: {{ order.payment_method_title }}</p>
+      <p>Pickup time: {{ order.date_created | date }} 8:00am (value is static. Make it dynamic)</p>
+      <div>
+        <div class="xx-small-space"></div>
+        <h4>Your Basket</h4>
+        <div>
+          <div class="row" *ngFor="let item of order.line_items">
+            <div class="col-6-sm">{{ item.name }}</div>
+            <div class="col-2-sm">{{ item.quantity }}x</div>
+            <div class="col-4-sm right">{{ item.subtotal | currency:'XAF':'':'1.0-0' }} frs</div>
+          </div>
+          <div class="row">
+            <div class="col-6-sm"><strong>Total</strong></div>
+            <div class="col-2-sm"></div>
+            <div class="col-4-sm right"><strong>{{ order.total | currency:'XAF':'':'1.0-0' }} frs</strong></div>
+          </div>
+        </div>
+      </div>
+      <div class="small-space"></div>
+      <button
+        mat-button mat-raised-button
+        color="primary" class="full-width"
+        routerLink="/home">
+        Home
+      </button>
+      <div class="small-space"></div>
     </div>
   </div>
+</div>
 
+<div *ngIf="loading" class="loading-wrapper page-section-wrapper">
+  <div>Preparing Order</div>
   <div class="small-space"></div>
-
-  <div>
-    <div>Total: Total</div>
-    <div>Items</div>
-    <div>Payment method: Cash on delivery</div>
-    <div>Unique identifier</div>
-  </div>
+  <mat-progress-bar color="primary" mode="indeterminate"></mat-progress-bar>
 </div>

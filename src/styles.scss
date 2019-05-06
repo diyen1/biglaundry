@@ -9,6 +9,7 @@ $color-primary-contrast: "255,255,255";
 $color-accent-contrast: "0,0,0";
 
 @import "assets/scss/common/variables";
+@import "assets/scss/common/base";
 @import "assets/scss/common/mixens";
 @import "assets/scss/components/elements";
 @import "assets/scss/components/spaces";

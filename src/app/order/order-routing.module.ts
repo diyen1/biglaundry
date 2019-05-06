@@ -9,7 +9,7 @@ const routes: Routes = [{
   component: OrderWrapperComponent,
   children: [
     {
-      path: 'successful/:orderId',
+      path: 'successful/:id',
       component: OrderSuccessfulComponent,
     },
     {

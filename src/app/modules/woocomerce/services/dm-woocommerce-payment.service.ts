@@ -1,9 +1,12 @@
 import {Injectable} from '@angular/core';
 import {environment} from '../../../../environments/environment';
 import {HttpClient} from '@angular/common/http';
-import {addParamsToUrl} from '../../add-params-to-url';
 import {DmWoocommerceOrdersService} from './dm-woocommerce-orders.service';
 import {Observable} from 'rxjs';
+import {PaymentResponseType} from '../payment-response-type.enum';
+import {DmWooPaymentResponse} from '../payment-response.interface';
+import {PaymentMethod} from '../payment.method';
+
 
 @Injectable({
   providedIn: 'root'
@@ -11,6 +14,9 @@ import {Observable} from 'rxjs';
 export class DmWoocommercePaymentService {
 
   currentPaymentMethod = 'cod';
+  currentPaymentMethodVars: any = {};
+  processingPayment = false;
+  paymentResponse: DmWooPaymentResponse;
 
   constructor(
     private http: HttpClient,
@@ -28,45 +34,70 @@ export class DmWoocommercePaymentService {
   }
 
 
-  handlePayment(formValue): Observable<boolean> {
-    // switch (this.currentPaymentMethod) {
-    console.log(formValue);
-    switch (formValue.paymentMethod) {
-      case 'momo':
+  handlePayment(formValue): Observable<DmWooPaymentResponse> {
+    this.processingPayment = true;
+    switch (this.currentPaymentMethod) {
+      case PaymentMethod.MTN_MOBILE_MONEY_CAMEROON:
         return this.handleMomo(formValue);
-      case 'om':
+      case PaymentMethod.ORANGE_MONEY_CAMEROON:
         return this.handleOM(formValue);
-      case 'cod':
+      case PaymentMethod.CASH_ON_DELIVERY:
       default:
         return this.handleCod(formValue);
     }
   }
 
-  handleCod(formValue): Observable<boolean> {
+  handleCod(formValue): Observable<DmWooPaymentResponse> {
     return new Observable((observer) => {
       this.orderService.order.billing.phone = formValue.codPhone;
-      observer.next(true);
+
+      this.paymentResponse = {
+        type: PaymentResponseType.SUCCESS,
+        message: 'Successful'
+      };
+
+      observer.next(this.paymentResponse);
       observer.complete();
     });
   }
 
-  handleMomo(formValue): Observable<boolean> {
+  handleMomo(formValue): Observable<DmWooPaymentResponse> {
     // display popup
     // return observable
-    return new Observable((observer) => {
-      this.orderService.order.billing.phone = formValue.momoPhone;
-      observer.next(false);
-      observer.complete();
-    });
+    console.log('handleMomo formValue', formValue);
+    if (this.currentPaymentMethodVars && this.currentPaymentMethodVars.phone && this.currentPaymentMethodVars.phone !== '') {
+      return new Observable((observer) => {
+        // observer.next(false);
+        // observer.complete();
+      });
+    } else {
+      return new Observable((observer) => {
+        setTimeout(() => {
+          this.processingPayment = false;
+          this.paymentResponse = {
+            type: PaymentResponseType.ERROR,
+            message: 'Please input the phone number you use for Mobile Money'
+          };
+          observer.next(this.paymentResponse);
+          observer.complete();
+        }, 1000);
+      });
+    }
   }
 
-  handleOM(formValue): Observable<boolean> {
+  handleOM(formValue): Observable<DmWooPaymentResponse> {
     // display popup
     // return observable
     return new Observable((observer) => {
-      this.orderService.order.billing.phone = formValue.omPhone;
-      observer.next(false);
-      observer.complete();
+      setTimeout(() => {
+        this.processingPayment = false;
+        this.paymentResponse = {
+          type: PaymentResponseType.ERROR,
+          message: 'Error processing payment'
+        };
+        observer.next(this.paymentResponse);
+        observer.complete();
+      }, 1000);
     });
   }
 }

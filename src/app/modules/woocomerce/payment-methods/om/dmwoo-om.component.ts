@@ -5,13 +5,14 @@ import {
   Validators,
 } from '@angular/forms';
 import {PaymentOption} from '../../payment-gateway.model';
+import {DmWoocommercePaymentService} from '../../services/dm-woocommerce-payment.service';
 
 @Component({
   selector: 'dmwoo-om',
   templateUrl: './dmwoo-om.component.html',
   styleUrls: ['./dmwoo-om.component.scss'],
 })
-export class DmwooOmComponent extends PaymentOption implements OnInit {
+export class DmwooOmComponent implements OnInit {
 
   @Input() isRequired = true;
   @Output() outputPaymentValid: any = new EventEmitter<boolean>();
@@ -21,12 +22,7 @@ export class DmwooOmComponent extends PaymentOption implements OnInit {
   value = '';
   phoneField;
 
-  constructor() {
-    super();
-  }
-
-  static process_payment(): void {
-
+  constructor(private paymentService: DmWoocommercePaymentService) {
   }
 
   ngOnInit() {
@@ -51,6 +47,7 @@ export class DmwooOmComponent extends PaymentOption implements OnInit {
     // console.log('event', event);
     const value = this.form.get('phoneField').value;
     const newIsValid = !!(value && value.trim() !== '' );
+    this.paymentService.currentPaymentMethodVars.phone = value;
 
     if (newIsValid !== this.isValid) {
       this.isValid = newIsValid;

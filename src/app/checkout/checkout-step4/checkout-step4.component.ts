@@ -1,9 +1,15 @@
-import { Component, OnInit } from '@angular/core';
-import {DmWoocommerceCartService} from '../../modules/woocomerce/services/dm-woocommerce-cart.service';
+import {Component, OnInit} from '@angular/core';
 import {DmWoocommerceOrdersService} from '../../modules/woocomerce/services/dm-woocommerce-orders.service';
-import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
+import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {DmWoocommercePaymentService} from '../../modules/woocomerce/services/dm-woocommerce-payment.service';
 import {Router} from '@angular/router';
+import {MatBottomSheet} from '@angular/material';
+import {DmwooNotificationComponent} from '../../modules/woocomerce/components/notification/dmwoo-notification.component';
+import {DmWooPaymentResponse} from '../../modules/woocomerce/payment-response.interface';
+import {PaymentResponseType} from '../../modules/woocomerce/payment-response-type.enum';
+import {LOrder} from '../../modules/woocomerce/l-order.model';
+import {PaymentGateway} from '../../modules/woocomerce/payment-gateway.model';
+import {PaymentMethod} from '../../modules/woocomerce/payment.method';
 
 @Component({
   selector: 'app-checkout-step4',
@@ -21,11 +27,16 @@ export class CheckoutStep4Component implements OnInit {
   first_name: FormControl;
   last_name: FormControl;
   terms_and_conditions: FormControl;
-  payment_option: FormControl;
+  payment_method: FormControl;
+
+  paymentGateways: PaymentGateway[] = [];
+  loading = true;
 
   constructor(
     private router: Router,
     private orderService: DmWoocommerceOrdersService,
+    public paymentService: DmWoocommercePaymentService,
+    private bottomSheet: MatBottomSheet,
   ) {
   }
 
@@ -45,7 +56,19 @@ export class CheckoutStep4Component implements OnInit {
       [Validators.required]
     );
     this.terms_and_conditions = new FormControl('', [Validators.required]);
-    this.payment_option = new FormControl('', [Validators.required]);
+    this.payment_method = new FormControl('', [Validators.required]);
+
+    /////////////
+
+    this.paymentService.getPaymentOptions().subscribe((res: PaymentGateway[]) => {
+      res.forEach((value, index) => {
+        if (value.enabled) {
+          this.paymentGateways.push(value);
+        }
+      });
+      this.loading = false;
+    });
+    /////////////
 
     this.form = new FormGroup({
       address_1: this.address_1,
@@ -55,29 +78,47 @@ export class CheckoutStep4Component implements OnInit {
       first_name: this.first_name,
       last_name: this.last_name,
       terms_and_conditions: this.terms_and_conditions,
-      payment_option: this.payment_option,
+      payment_method: this.payment_method,
     });
   }
 
-  onSubmit (formValue) {
-    this.orderService.updateAccount(formValue);
+  changePaymentmenthod() {
+    this.paymentService.currentPaymentMethod = this.form.get('payment_method').value;
   }
 
+  isMomo(paymentGatewayId) {
+    return paymentGatewayId === PaymentMethod.MTN_MOBILE_MONEY_CAMEROON;
+  }
+
+  isOM(paymentGatewayId) {
+    return paymentGatewayId === PaymentMethod.ORANGE_MONEY_CAMEROON;
+  }
+
+  onSubmit (formValue) {
+    this.order(formValue);
+  }
 
   order(formValue) {
-    // this.orderService.updatePayment(formValue);
+    for ( let i = 0; i < this.paymentGateways.length; i++) {
+      if (formValue.payment_method === this.paymentGateways[i].id) {
+        formValue.payment_method_title = this.paymentGateways[i].method_title;
+        break;
+      }
+    }
 
-    // this.paymentService.handlePayment(formValue).subscribe((haspaid) => {
-    //   console.log(haspaid);
-    //   if (haspaid) {
-    //     this.orderService.addOrder().subscribe((res) => {
-    //       console.log('order', res);
-    //     });
-    //     this.error = null;
-    //   } else {
-    //     // TODO handle all the errors
-    //     this.error = 'Failed to process payment';
-    //   }
-    // });
+    this.orderService.updatePayment(formValue);
+
+    this.paymentService.handlePayment(formValue).subscribe((paymentResponse: DmWooPaymentResponse) => {
+      console.log(paymentResponse);
+      if (paymentResponse.type === PaymentResponseType.SUCCESS) {
+        this.orderService.addOrder().subscribe((order: LOrder) => {
+          console.log('order', order);
+          this.paymentService.processingPayment = false;
+          this.router.navigate(['/order/successful/' + order.id ]);
+        });
+      } else {
+        this.bottomSheet.open(DmwooNotificationComponent);
+      }
+    });
   }
 }

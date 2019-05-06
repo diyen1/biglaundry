@@ -23,8 +23,8 @@
           <div>{{ paymentGateway.description }}</div>
           <div class="x-small-space"></div>
           <div>
-            <dmwoo-momo *ngIf="paymentGateway.id === 'mtn_mobile_money_cameroon'"></dmwoo-momo>
-            <dmwoo-om *ngIf="paymentGateway.id === 'orange_money_cameroon'"></dmwoo-om>
+            <dmwoo-momo *ngIf="isMomo(paymentGateway.id)"></dmwoo-momo>
+            <dmwoo-om *ngIf="isOM(paymentGateway.id)"></dmwoo-om>
           </div> <!-- (outputPaymentValid)="updateFormValidity($event, 'momo')" -->
         </div>
       </div>
